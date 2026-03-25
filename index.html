@@ -3,14 +3,103 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>theChief — Dom Harris</title>
+  <title>theChief - Dom Harris</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #2c1f33;
+      --paper: #f5eac2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 1.5rem clamp(1rem, 5vw, 2.5rem);
+      max-width: 42rem;
+      font-family: "Gabarito", system-ui, sans-serif;
+      line-height: 1.55;
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    a {
+      color: var(--paper);
+      font-weight: 600;
+    }
+
+    a:hover {
+      opacity: 0.88;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--paper);
+      outline-offset: 2px;
+    }
+
+    strong,
+    b,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      font-weight: 900;
+    }
+
+    .stuff {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem 0;
+      padding: 1rem 0;
+      border-top: 1px solid var(--paper);
+      border-bottom: 1px solid var(--paper);
+    }
+
+    .stuff-item p:first-child {
+      margin: 0 0 0.25rem;
+    }
+
+    .stuff-item p:last-child {
+      margin: 0;
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
+
+    .webring ul {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0;
+    }
+
+    .webring li {
+      margin: 0.5rem 0;
+    }
+
+    .webring-desc {
+      display: block;
+      margin-top: 0.2rem;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .webring-error {
+      color: var(--paper);
+      opacity: 0.75;
+    }
+  </style>
 </head>
 <body>
   <h1>Heyo</h1>
 
   <p>I'm Dom, or theChief. By day, I'm the <strong>Web Games Advocate</strong> at <a href="https://crazygames.com">CrazyGames</a>. By night, I sleep if my two kids allow it. By weekend, I make games. By some fourth measure of time, I host game jams. My life is video games, <strong>pity me.</strong></p>
 
-  <p>My games are typically loud and silly! This site is clearly not. Getting things to <strong>go fast</strong> is something of a special interest — I am generally of the opinion that most software these days is terrible, and it's because people stopped caring: "computers are fast enough". No. Wrong. Bad.</p>
+  <p>My games are typically loud and silly! This site is clearly not. Getting things to <strong>go fast</strong> is something of a special interest - I am generally of the opinion that most software these days is terrible, and it's because people stopped caring: "computers are fast enough". No. Wrong. Bad.</p>
 
   <p>If you want to say hello, use the <a href="#guestbook">guestbook</a> below.</p>
 
@@ -34,7 +123,7 @@
   </div>
 
   <section class="webring" id="webring" aria-labelledby="webring-heading">
-    <h2 id="webring-heading">Webring</h2>
+    <h2 id="webring-heading">Other cool sites:</h2>
     <p class="webring-loading" id="webring-status">Loading webring…</p>
   </section>
 
@@ -60,38 +149,38 @@
   <script>
     (function () {
       var root = document.getElementById('webring');
-      var statusEl = document.getElementById('webring-status');
-      var url = 'https://willdotwhite.github.io/webring/data.json';
-
-      fetch(url)
-        .then(function (res) {
-          if (!res.ok) throw new Error('HTTP ' + res.status);
-          return res.json();
-        })
+      var status = document.getElementById('webring-status');
+      var here = location.hostname;
+      fetch('https://willdotwhite.github.io/webring/data.json')
+        .then(function (r) { return r.json(); })
         .then(function (sites) {
-          if (!Array.isArray(sites)) throw new Error('Invalid data');
-          statusEl.remove();
-          var list = document.createElement('ul');
-          sites.forEach(function (site) {
+          status.remove();
+          var ul = document.createElement('ul');
+          (Array.isArray(sites) ? sites : []).forEach(function (site) {
             if (!site || !site.url) return;
+            try {
+              if (new URL(site.url).hostname === here) return;
+            } catch (e) {
+              return;
+            }
             var li = document.createElement('li');
             var a = document.createElement('a');
             a.href = site.url;
             a.textContent = site.title || site.name || site.url;
             li.appendChild(a);
             if (site.description) {
-              var desc = document.createElement('span');
-              desc.className = 'webring-desc';
-              desc.textContent = site.description;
-              li.appendChild(desc);
+              var d = document.createElement('span');
+              d.className = 'webring-desc';
+              d.textContent = site.description;
+              li.appendChild(d);
             }
-            list.appendChild(li);
+            ul.appendChild(li);
           });
-          root.appendChild(list);
+          root.appendChild(ul);
         })
         .catch(function () {
-          statusEl.textContent = 'Webring could not be loaded.';
-          statusEl.className = 'webring-error';
+          status.textContent = 'Webring could not be loaded.';
+          status.className = 'webring-error';
         });
     })();
   </script>
