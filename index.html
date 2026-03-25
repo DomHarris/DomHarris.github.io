@@ -1,9 +1,99 @@
-<h1>Heyo</h1>
-<p>I'm Dom, this is my space</p>
-<p>I'm a Christian, a father of two, and a game dev :)</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>theChief — Dom Harris</title>
+</head>
+<body>
+  <h1>Heyo</h1>
 
-<div class="stuff">
-    <div class="stuff-item"><p><a href="https://wayfarer.games">https://wayfarer.games</a></p><p>This is my game studio's site</p></div>
-    <div class="stuff-item"><p><a href="https://wayfarer-games.com/blog">https://wayfarer.games</a></p><p>This is where my blog lives</p></div>
-    <div class="stuff-item"><p><a href="mailto:dom@wayfarer.games">dom@wayfarer.games</a></p><p>You can contact me here</p></div>
-</div>
+  <p>I'm Dom, or theChief. By day, I'm the <strong>Web Games Advocate</strong> at <a href="https://crazygames.com">CrazyGames</a>. By night, I sleep if my two kids allow it. By weekend, I make games. By some fourth measure of time, I host game jams. My life is video games, <strong>pity me.</strong></p>
+
+  <p>My games are typically loud and silly! This site is clearly not. Getting things to <strong>go fast</strong> is something of a special interest — I am generally of the opinion that most software these days is terrible, and it's because people stopped caring: "computers are fast enough". No. Wrong. Bad.</p>
+
+  <p>If you want to say hello, use the <a href="#guestbook">guestbook</a> below.</p>
+
+  <div class="stuff">
+    <div class="stuff-item">
+      <p><a href="https://wayfarer.games">Wayfarer Games</a></p>
+      <p>Stuff I've made</p>
+    </div>
+    <div class="stuff-item">
+      <p><a href="https://wayfarer-games.com/blog">Blog</a></p>
+      <p>Stuff I've written</p>
+    </div>
+    <div class="stuff-item">
+      <p><a href="https://wayfarergames.itch.io">Itch</a></p>
+      <p>Weird janky experimental stuff</p>
+    </div>
+    <div class="stuff-item">
+      <p><a href="https://itch.io/jam/bullet-jam-7">Bullet Hell Jam 7</a></p>
+      <p>The next game jam I'm hosting</p>
+    </div>
+  </div>
+
+  <section class="webring" id="webring" aria-labelledby="webring-heading">
+    <h2 id="webring-heading">Webring</h2>
+    <p class="webring-loading" id="webring-status">Loading webring…</p>
+  </section>
+
+  <div id="guestbook">
+    <script
+      src="https://giscus.app/client.js"
+      data-repo="domharris/domharris.github.io"
+      data-repo-id="MDEwOlJlcG9zaXRvcnk4OTE3NTU3OA=="
+      data-category="General"
+      data-category-id="DIC_kwDOBVC2Gs4C5Ryx"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="0"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="https://giscus.app/themes/custom_example.css"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async></script>
+  </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('webring');
+      var statusEl = document.getElementById('webring-status');
+      var url = 'https://willdotwhite.github.io/webring/data.json';
+
+      fetch(url)
+        .then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return res.json();
+        })
+        .then(function (sites) {
+          if (!Array.isArray(sites)) throw new Error('Invalid data');
+          statusEl.remove();
+          var list = document.createElement('ul');
+          sites.forEach(function (site) {
+            if (!site || !site.url) return;
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = site.url;
+            a.textContent = site.title || site.name || site.url;
+            li.appendChild(a);
+            if (site.description) {
+              var desc = document.createElement('span');
+              desc.className = 'webring-desc';
+              desc.textContent = site.description;
+              li.appendChild(desc);
+            }
+            list.appendChild(li);
+          });
+          root.appendChild(list);
+        })
+        .catch(function () {
+          statusEl.textContent = 'Webring could not be loaded.';
+          statusEl.className = 'webring-error';
+        });
+    })();
+  </script>
+</body>
+</html>
