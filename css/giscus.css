@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css2?family=Gabarito:wght@400..900&display=swap");
+
+/*!
+ * Based on GitHub Primer dark_dimmed (MIT)
+ * https://github.com/primer/primitives/blob/main/LICENSE
+ * Colours remapped to match domharris.uk (--ink / --paper).
+ */
+
+main {
+  font-family: "Gabarito", system-ui, sans-serif;
+
+  --color-prettylights-syntax-comment: #8b7f99;
+  --color-prettylights-syntax-constant: #9cd8ff;
+  --color-prettylights-syntax-entity: #e0c4f7;
+  --color-prettylights-syntax-storage-modifier-import: #d4ccb8;
+  --color-prettylights-syntax-entity-tag: #9dd4a3;
+  --color-prettylights-syntax-keyword: #f0a09a;
+  --color-prettylights-syntax-string: #a8d8f0;
+  --color-prettylights-syntax-variable: #f0b87a;
+  --color-prettylights-syntax-brackethighlighter-unmatched: #e08078;
+  --color-prettylights-syntax-invalid-illegal-text: #f5eac2;
+  --color-prettylights-syntax-invalid-illegal-bg: #6b2830;
+  --color-prettylights-syntax-carriage-return-text: #f5eac2;
+  --color-prettylights-syntax-carriage-return-bg: #7a3538;
+  --color-prettylights-syntax-string-regexp: #9dd4a3;
+  --color-prettylights-syntax-markup-list: #e8d080;
+  --color-prettylights-syntax-markup-heading: #c9b8e8;
+  --color-prettylights-syntax-markup-italic: #d4ccb8;
+  --color-prettylights-syntax-markup-bold: #f5eac2;
+  --color-prettylights-syntax-markup-deleted-text: #ffd8d3;
+  --color-prettylights-syntax-markup-deleted-bg: #5c2428;
+  --color-prettylights-syntax-markup-inserted-text: #b8e6b8;
+  --color-prettylights-syntax-markup-inserted-bg: #2a4a32;
+  --color-prettylights-syntax-markup-changed-text: #ffe0b8;
+  --color-prettylights-syntax-markup-changed-bg: #5c3a20;
+  --color-prettylights-syntax-markup-ignored-text: #a89a90;
+  --color-prettylights-syntax-markup-ignored-bg: #3d4a6e;
+  --color-prettylights-syntax-meta-diff-range: #e0c4f7;
+  --color-prettylights-syntax-brackethighlighter-angle: #8b7f99;
+  --color-prettylights-syntax-sublimelinter-gutter-mark: #6e6578;
+  --color-prettylights-syntax-constant-other-reference-link: #9cd8ff;
+
+  --color-btn-text: #f5eac2;
+  --color-btn-bg: #3d2d47;
+  --color-btn-border: rgb(245 234 194 / 14%);
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-hover-bg: #4a3854;
+  --color-btn-hover-border: rgb(245 234 194 / 28%);
+  --color-btn-active-bg: #43324e;
+  --color-btn-active-border: rgb(245 234 194 / 22%);
+  --color-btn-selected-bg: #3a2a42;
+
+  --color-btn-primary-text: #2c1f33;
+  --color-btn-primary-bg: #f5eac2;
+  --color-btn-primary-border: rgb(245 234 194 / 35%);
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-hover-bg: #fff8e6;
+  --color-btn-primary-hover-border: rgb(245 234 194 / 45%);
+  --color-btn-primary-selected-bg: #ebe0b4;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-btn-primary-disabled-text: rgb(44 31 51 / 45%);
+  --color-btn-primary-disabled-bg: rgb(245 234 194 / 55%);
+  --color-btn-primary-disabled-border: rgb(245 234 194 / 25%);
+
+  --color-action-list-item-default-hover-bg: rgb(245 234 194 / 10%);
+  --color-segmented-control-bg: rgb(245 234 194 / 10%);
+  --color-segmented-control-button-bg: #2c1f33;
+  --color-segmented-control-button-selected-border: rgb(245 234 194 / 28%);
+
+  --color-fg-default: #f5eac2;
+  --color-fg-muted: rgb(245 234 194 / 72%);
+  --color-fg-subtle: rgb(245 234 194 / 52%);
+
+  --color-canvas-default: #2c1f33;
+  --color-canvas-overlay: #352640;
+  --color-canvas-inset: #241a2b;
+  --color-canvas-subtle: #3d2d47;
+
+  --color-border-default: rgb(245 234 194 / 22%);
+  --color-border-muted: rgb(245 234 194 / 12%);
+  --color-neutral-muted: rgb(245 234 194 / 18%);
+
+  --color-accent-fg: #f5eac2;
+  --color-accent-emphasis: #fff8e6;
+  --color-accent-muted: rgb(245 234 194 / 38%);
+  --color-accent-subtle: rgb(245 234 194 / 12%);
+
+  --color-success-fg: #8fbc8f;
+  --color-attention-fg: #e8c060;
+  --color-attention-muted: rgb(232 192 96 / 40%);
+  --color-attention-subtle: rgb(232 192 96 / 14%);
+  --color-danger-fg: #e88880;
+  --color-danger-muted: rgb(232 136 128 / 45%);
+  --color-danger-subtle: rgb(232 136 128 / 12%);
+
+  --color-primer-shadow-inset: 0 0 transparent;
+  --color-scale-gray-7: #3d2d47;
+  --color-scale-blue-8: #4a3a5c;
+
+  --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+}
+
+main .pagination-loader-container {
+  background-image: url("https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg");
+  opacity: 0.65;
+}
+
+main .gsc-loading-image {
+  background-image: url("https://github.githubassets.com/images/mona-loading-dimmed.gif");
+}
+
+.gsc-homepage-bg {
+  background-color: #2c1f33;
+}
