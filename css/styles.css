@@ -61,6 +61,33 @@ h6 {
   font-size: 0.95rem;
 }
 
+.colophon {
+  margin: 1.5rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: rgb(245 234 194 / 58%);
+}
+
+.colophon-line {
+  border: 0;
+  border-top: 1px solid rgb(245 234 194 / 18%);
+  margin: 0.65rem 0;
+}
+
+.colophon p {
+  margin: 0.4rem 0;
+}
+
+.colophon a {
+  font-weight: 500;
+  color: rgb(245 234 194 / 72%);
+}
+
+.colophon a:hover {
+  color: var(--paper);
+  opacity: 1;
+}
+
 .webring ul {
   list-style: none;
   padding: 0;
