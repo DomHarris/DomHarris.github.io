@@ -250,6 +250,8 @@ body.nearly-birds-modal-open {
 }
 
 .nearly-birds-modal-stage {
+  --modal-slot-w: min(calc(100vw - 2rem - 7.5rem), 100%);
+  --modal-slot-h: min(calc(100vh - 6rem), calc(100dvh - 6rem));
   display: grid;
   place-items: center;
   grid-template-areas: "stack";
@@ -259,11 +261,11 @@ body.nearly-birds-modal-open {
 .nearly-birds-modal-preview,
 .nearly-birds-modal-img {
   grid-area: stack;
-  width: auto;
-  height: auto;
-  max-width: calc(100vw - 2rem - 7.5rem);
-  max-height: calc(100vh - 6rem);
-  max-height: calc(100dvh - 6rem);
+  box-sizing: border-box;
+  width: var(--modal-slot-w);
+  height: var(--modal-slot-h);
+  max-width: var(--modal-slot-w);
+  max-height: var(--modal-slot-h);
   object-fit: contain;
   object-position: center;
   border-radius: 2px;
