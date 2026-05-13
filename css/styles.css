@@ -167,7 +167,7 @@ iframe.giscus-frame {
   outline-offset: 2px;
 }
 
-.nearly-birds-tile video {
+.nearly-birds-tile img {
   display: block;
   width: 100%;
   height: 100%;
@@ -249,9 +249,16 @@ body.nearly-birds-modal-open {
   outline-offset: 2px;
 }
 
+.nearly-birds-modal-stage {
+  display: grid;
+  place-items: center;
+  grid-template-areas: "stack";
+  width: 100%;
+}
+
+.nearly-birds-modal-preview,
 .nearly-birds-modal-img {
-  display: block;
-  margin: 0 auto;
+  grid-area: stack;
   width: auto;
   height: auto;
   max-width: calc(100vw - 2rem - 7.5rem);
@@ -260,6 +267,23 @@ body.nearly-birds-modal-open {
   object-fit: contain;
   object-position: center;
   border-radius: 2px;
+}
+
+.nearly-birds-modal-preview {
+  z-index: 1;
+}
+
+.nearly-birds-modal-img {
+  z-index: 2;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  pointer-events: none;
+}
+
+.nearly-birds-modal-img.nearly-birds-modal-img--ready {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .nearly-birds-modal-close {

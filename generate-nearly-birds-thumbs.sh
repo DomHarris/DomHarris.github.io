@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Generate small WebM loops and JPEG posters for nearly-birds gallery tiles.
-# Requires: ffmpeg with libvpx-vp9 (typical Homebrew install).
+# Generate small WebP thumbnails for nearly-birds gallery tiles (still images).
+# Requires: ffmpeg with libwebp (typical Homebrew install).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")" && pwd)"
@@ -22,14 +22,11 @@ fi
 
 for f in "${files[@]}"; do
   base=$(basename "$f" .jpg)
-  webm="$OUT/${base}.webm"
-  poster="$OUT/${base}.poster.jpg"
+  webp="$OUT/${base}.webp"
   echo "==> $base"
   ffmpeg -hide_banner -loglevel error -y \
-    -i "$f" -vf "scale=320:-2" -frames:v 1 -q:v 58 "$poster"
-  ffmpeg -hide_banner -loglevel error -y \
-    -loop 1 -i "$f" -t 1 -an -vf "scale=320:-2" \
-    -c:v libvpx-vp9 -b:v 0 -crf 35 -row-mt 1 "$webm"
+    -i "$f" -vf "scale=320:-2" \
+    -c:v libwebp -quality 78 "$webp"
 done
 
 echo "Done. Output: $OUT"
