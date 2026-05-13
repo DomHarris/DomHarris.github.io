@@ -134,12 +134,12 @@
     <hr class="colophon-line">
   </section>
 
-  <div id="nearly-birds-modal" class="nearly-birds-modal" hidden aria-modal="true" role="dialog" aria-label="Full photo">
+  <div id="nearly-birds-modal" class="nearly-birds-modal" hidden tabindex="-1" aria-modal="true" role="dialog" aria-label="Full photo">
     <div class="nearly-birds-modal-backdrop" tabindex="-1"></div>
     <div class="nearly-birds-modal-inner">
       <button type="button" class="nearly-birds-modal-close" aria-label="Close">×</button>
-      <button type="button" class="nearly-birds-modal-nav nearly-birds-modal-prev" aria-label="Previous photo">‹</button>
       <img class="nearly-birds-modal-img" alt="">
+      <button type="button" class="nearly-birds-modal-nav nearly-birds-modal-prev" aria-label="Previous photo">‹</button>
       <button type="button" class="nearly-birds-modal-nav nearly-birds-modal-next" aria-label="Next photo">›</button>
     </div>
   </div>
@@ -229,6 +229,21 @@
         showAt(currentIdx + d);
       }
 
+      function onModalKeyDown(e) {
+        if (modal.hidden) return;
+        var k = e.key;
+        if (k === 'Escape') {
+          e.preventDefault();
+          closeModal();
+          return;
+        }
+        if (k === 'ArrowLeft' || k === 'ArrowRight') {
+          e.preventDefault();
+          e.stopImmediatePropagation();
+          step(k === 'ArrowLeft' ? -1 : 1);
+        }
+      }
+
       section.addEventListener('click', function (e) {
         var tile = e.target.closest('.nearly-birds-tile');
         if (!tile) return;
@@ -240,20 +255,7 @@
       btnPrev.addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
       btnNext.addEventListener('click', function (e) { e.stopPropagation(); step(1); });
       backdrop.addEventListener('click', closeModal);
-      document.addEventListener('keydown', function (e) {
-        if (modal.hidden) return;
-        if (e.key === 'Escape') {
-          closeModal();
-          return;
-        }
-        if (e.key === 'ArrowLeft') {
-          e.preventDefault();
-          step(-1);
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          step(1);
-        }
-      });
+      document.addEventListener('keydown', onModalKeyDown, true);
 
       var vids = section.querySelectorAll('.nearly-birds-tile video');
       if ('IntersectionObserver' in window) {
